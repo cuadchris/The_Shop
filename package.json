@@ -1,0 +1,22 @@
+{
+  "name": "the_shop",
+  "version": "1.0.0",
+  "description": "MERN Shopping app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuadchris/The_Shop.git"
+  },
+  "author": "Christopher Cuadrado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuadchris/The_Shop/issues"
+  },
+  "homepage": "https://github.com/cuadchris/The_Shop#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

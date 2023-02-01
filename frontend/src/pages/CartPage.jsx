@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Row,
   Col,
@@ -8,17 +7,18 @@ import {
   Button,
   Card,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import Message from '../components/Message';
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
 
   const removeFromCartHandler = (id) => {
-    console.log('Removed. --testing.');
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
@@ -46,9 +46,9 @@ const CartPage = () => {
                   <Col md={2}>
                     <Form.Control
                       as='select'
-                      value={qty}
+                      value={item.qty}
                       onChange={(e) =>
-                        console.log(item.product, e.target.value)
+                        dispatch(addToCart(item.product, e.target.value))
                       }
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
@@ -78,7 +78,8 @@ const CartPage = () => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                Subtotal (
+                {cartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
                 items
               </h2>
               $

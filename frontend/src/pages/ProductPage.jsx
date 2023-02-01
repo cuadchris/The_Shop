@@ -15,9 +15,10 @@ import { listProductDetails } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useState } from 'react';
+import { addToCart } from '../actions/cartActions';
 
 const ProductPage = () => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   const params = useParams();
 
@@ -31,7 +32,9 @@ const ProductPage = () => {
     dispatch(listProductDetails(params.id));
   }, [dispatch, params.id]);
 
-  const addToCartHandler = () => {};
+  const addToCartHandler = () => {
+    dispatch(addToCart(params.id, qty));
+  };
 
   return (
     <>

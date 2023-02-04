@@ -3,9 +3,9 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
-} from '../constants/userconstants';
+} from '../constants/userConstants';
 
-export const login = (email, passwowrd) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,

@@ -6,6 +6,7 @@ import ProductPage from './pages/ProductPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CartPage from './pages/CartPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
               <Route path='/product/:id' element={<ProductPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/cart' element={<CartPage />} />
+              <Route path='/register' element={<RegisterPage />} />
             </Routes>
           </Container>
         </main>

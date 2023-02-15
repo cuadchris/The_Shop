@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +8,7 @@ import Stepper from '../components/Stepper';
 
 const ShippingPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
@@ -19,6 +21,7 @@ const ShippingPage = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    navigate('/payment');
   };
 
   return (

@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Stepper from '../components/Stepper';
 import Message from '../components/Message';
+import { createOrder } from '../actions/orderActions';
+import { useEffect } from 'react';
 
 const PlaceOrderPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const cart = useSelector((state) => state.cart);
 
   // Figuring prices
@@ -20,13 +25,28 @@ const PlaceOrderPage = () => {
     Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)
   ).toFixed(2);
 
-  const placeOrderHandler = (e) => {
-    e.preventDefault();
-    console.log('Order Placed. --testing');
-    console.log(typeof cart.itemsPrice);
-    console.log(typeof cart.shippingPrice);
-    console.log(typeof cart.taxPrice);
-    console.log(typeof cart.totalPrice);
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+    }
+    // eslint-disable-next-line
+  }, [success]);
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
   };
 
   return (
@@ -118,6 +138,10 @@ const PlaceOrderPage = () => {
                   <Col>Total</Col>
                   <Col>${cart.totalPrice}</Col>
                 </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
 
               <ListGroup.Item>

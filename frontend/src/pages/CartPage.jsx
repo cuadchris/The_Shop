@@ -8,11 +8,12 @@ import {
   Card,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import Message from '../components/Message';
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const CartPage = () => {
   };
 
   const checkoutHandler = () => {
-    console.log('Checked out. --testing');
+    navigate('/shipping');
   };
 
   return (

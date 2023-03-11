@@ -27,6 +27,7 @@ const App = () => {
           <Container>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/search/:keyword' element={<Home />} />
               <Route path='/product/:id' element={<ProductPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/cart' element={<CartPage />} />

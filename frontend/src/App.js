@@ -17,48 +17,54 @@ import UserEditPage from './pages/UserEditPage';
 import ProductListPage from './pages/ProductListPage';
 import ProductEditPage from './pages/ProductEditPage';
 import OrderListPage from './pages/OrderListPage';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <main className='py-3'>
-          <Container>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/page/:pageNumber' element={<Home />} />
-              <Route
-                path='/search/:keyword/page/:pageNumber'
-                element={<Home />}
-              />
-              <Route path='/search/:keyword' element={<Home />} />
-              <Route path='/product/:id' element={<ProductPage />} />
-              <Route path='/login' element={<LoginPage />} />
-              <Route path='/cart' element={<CartPage />} />
-              <Route path='/register' element={<RegisterPage />} />
-              <Route path='/profile' element={<ProfilePage />} />
-              <Route path='/shipping' element={<ShippingPage />} />
-              <Route path='/payment' element={<PaymentPage />} />
-              <Route path='/placeorder' element={<PlaceOrderPage />} />
-              <Route path='/order/:id' element={<OrderPage />} />
-              <Route path='/admin/userlist' element={<UserListPage />} />
-              <Route path='/admin/user/:id/edit' element={<UserEditPage />} />
-              <Route path='/admin/productlist' element={<ProductListPage />} />
-              <Route
-                path='/admin/productlist/:pageNumber'
-                element={<ProductListPage />}
-              />
-              <Route
-                path='/admin/product/:id/edit'
-                element={<ProductEditPage />}
-              />
-              <Route path='/admin/orderlist' element={<OrderListPage />} />
-            </Routes>
-          </Container>
-        </main>
-        <Footer />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <Header />
+          <main className='py-3'>
+            <Container>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/page/:pageNumber' element={<Home />} />
+                <Route
+                  path='/search/:keyword/page/:pageNumber'
+                  element={<Home />}
+                />
+                <Route path='/search/:keyword' element={<Home />} />
+                <Route path='/product/:id' element={<ProductPage />} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='/cart' element={<CartPage />} />
+                <Route path='/register' element={<RegisterPage />} />
+                <Route path='/profile' element={<ProfilePage />} />
+                <Route path='/shipping' element={<ShippingPage />} />
+                <Route path='/payment' element={<PaymentPage />} />
+                <Route path='/placeorder' element={<PlaceOrderPage />} />
+                <Route path='/order/:id' element={<OrderPage />} />
+                <Route path='/admin/userlist' element={<UserListPage />} />
+                <Route path='/admin/user/:id/edit' element={<UserEditPage />} />
+                <Route
+                  path='/admin/productlist'
+                  element={<ProductListPage />}
+                />
+                <Route
+                  path='/admin/productlist/:pageNumber'
+                  element={<ProductListPage />}
+                />
+                <Route
+                  path='/admin/product/:id/edit'
+                  element={<ProductEditPage />}
+                />
+                <Route path='/admin/orderlist' element={<OrderListPage />} />
+              </Routes>
+            </Container>
+          </main>
+          <Footer />
+        </BrowserRouter>
+      </HelmetProvider>
     </>
   );
 };
